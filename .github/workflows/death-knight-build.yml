@@ -1,0 +1,31 @@
+name: Build Death Knight (NeoForge 1.21.1)
+on:
+  push:
+    branches: [death-knight-build]
+  workflow_dispatch:
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+    steps:
+      - uses: actions/checkout@v4
+      - name: Set up Java 21
+        uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: '21'
+      - name: Install Gradle 8.14.3
+        uses: gradle/actions/setup-gradle@v4
+        with:
+          gradle-version: '8.14.3'
+      - name: Unpack Death Knight source and model
+        run: python3 unpack_source.py
+      - name: Build Death Knight Mod
+        run: gradle build --no-daemon --stacktrace
+      - name: Upload JAR
+        uses: actions/upload-artifact@v4
+        with:
+          name: DeathKnight-NeoForge-1.21.1
+          path: build/libs/*.jar
+          if-no-files-found: error
