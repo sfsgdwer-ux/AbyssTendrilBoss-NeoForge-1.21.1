@@ -1,7 +1,7 @@
-name: Build Abyss Tendril Boss V6 (NeoForge 1.21.1)
+name: Build Overlord Nazarick with Egg Tab (NeoForge 1.21.1)
 on:
   push:
-    branches: [main]
+    branches: [nazarick-eggs-tab]
   workflow_dispatch:
 jobs:
   build:
@@ -19,16 +19,20 @@ jobs:
         uses: gradle/actions/setup-gradle@v4
         with:
           gradle-version: '8.14.3'
-      - name: Restore V6 model, animations and texture
+      - name: Restore Death Knight and Abyss Tendril V6 sources and models
         run: |
+          python3 unpack_source.py
+          git checkout -- build.gradle gradle.properties settings.gradle
+          mkdir -p src/main/resources/META-INF
+          cp overlord-nazarick.mods.toml src/main/resources/META-INF/neoforge.mods.toml
           gzip -dc assets-v6/abyss_tendril_beast.geo.json.gz > src/main/resources/assets/abysstendril/geo/abyss_tendril_beast.geo.json
           gzip -dc assets-v6/abyss_tendril_beast.animation.json.gz > src/main/resources/assets/abysstendril/animations/abyss_tendril_beast.animation.json
           gzip -dc assets-v6/abyss_tendril_beast.png.gz > src/main/resources/assets/abysstendril/textures/entity/abyss_tendril_beast.png
-      - name: Build NeoForge Mod
+      - name: Build complete Overlord Nazarick mod
         run: gradle build --no-daemon --stacktrace
-      - name: Upload JAR
+      - name: Upload combined JAR
         uses: actions/upload-artifact@v4
         with:
-          name: AbyssTendrilBoss-V6-NeoForge-1.21.1
+          name: Overlord-Nazarick-Two-Bosses-With-Egg-Tab
           path: build/libs/*.jar
           if-no-files-found: error

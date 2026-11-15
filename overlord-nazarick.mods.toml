@@ -1,0 +1,63 @@
+modLoader="javafml"
+loaderVersion="[4,)"
+license="All Rights Reserved"
+
+[[mods]]
+modId="abysstendril"
+version="1.2.0"
+displayName="Overlord: The Great Tomb of Nazarick - Abyss Tendril V6"
+authors="Custom Boss Project"
+description='''
+Abyss Tendril V6 boss with its own Nazarick creative spawn-egg tab.
+'''
+
+[[dependencies.abysstendril]]
+modId="neoforge"
+type="required"
+versionRange="[21.1.0,)"
+ordering="NONE"
+side="BOTH"
+
+[[dependencies.abysstendril]]
+modId="minecraft"
+type="required"
+versionRange="[1.21.1,1.21.2)"
+ordering="NONE"
+side="BOTH"
+
+[[dependencies.abysstendril]]
+modId="geckolib"
+type="required"
+versionRange="[4.9.3,)"
+ordering="AFTER"
+side="BOTH"
+
+[[mods]]
+modId="deathknight"
+version="1.0.0"
+displayName="Overlord: The Great Tomb of Nazarick - Death Knight"
+authors="Custom Boss Project"
+description='''
+Death Knight boss with shield, axe combat and ten GeckoLib animations.
+'''
+
+[[dependencies.deathknight]]
+modId="neoforge"
+type="required"
+versionRange="[21.1.0,)"
+ordering="NONE"
+side="BOTH"
+
+[[dependencies.deathknight]]
+modId="minecraft"
+type="required"
+versionRange="[1.21.1,1.21.2)"
+ordering="NONE"
+side="BOTH"
+
+[[dependencies.deathknight]]
+modId="geckolib"
+type="required"
+versionRange="[4.9.3,)"
+ordering="AFTER"
+side="BOTH"
